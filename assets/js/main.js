@@ -10,6 +10,7 @@ let numeros = document.querySelector('.d-1-3');
 let etapaAtual = 0;
 let numero = '';
 let votoBranco = false;
+let votos = [];
 
 // Fazendo a porratodafuncionar
 
@@ -110,8 +111,16 @@ function confirma() {
     let votoConfirmado = false;
     if (votoBranco === true) {
         votoConfirmado = true;
+        votos.push({
+            etapa: etapas[etapaAtual].titulo,
+            voto: 'branco'
+        });
     } else if(numero.length === etapa.numeros) {
         votoConfirmado = true;
+        votos.push({
+            etapa: etapas[etapaAtual].titulo,
+            voto: numero
+        });
     }
 
     if (votoConfirmado) {
@@ -119,7 +128,8 @@ function confirma() {
         if (etapas[etapaAtual] !== undefined) {
             comecarEtapa();
         } else {
-            console.log(Fim);
+            document.querySelector('.tela').innerHTML = `<div class="aviso--gigante flex pisca">FIM</div> `;
+            console.log(votos);
         }
     }
 };
